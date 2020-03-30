@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'materialDatepicker';
   minDate=new Date()
+  date=new Date()
 }

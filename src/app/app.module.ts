@@ -11,6 +11,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 //import {MatNativeDateModule} from '@angular/material';
 import {MatNativeDateModule} from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, SatDatepickerModule } from 'saturn-datepicker'
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter'
+import {MatGridListModule} from '@angular/material/grid-list';
 @NgModule({
   declarations: [
     AppComponent
@@ -19,10 +22,12 @@ import {MatNativeDateModule} from '@angular/material/core';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatDatepickerModule, MatInputModule,
-    
+    MatDatepickerModule,
+    MatInputModule,
     MatFormFieldModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    SatDatepickerModule,
+    MatGridListModule
   ],
   // exports:[
   //   MatDatepickerModule, MatInputModule,
@@ -31,7 +36,11 @@ import {MatNativeDateModule} from '@angular/material/core';
   //   MatFormFieldModule,
   //   MatNativeDateModule
   // ],
-  providers: [],
+  providers: [
+    
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
